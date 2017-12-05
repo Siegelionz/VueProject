@@ -25,12 +25,19 @@
 <style scoped>
     .cms-s-header{
         background-color: #f7f7f7;
+        position:relative;
+        height: 52px;
+
     }
-    .tmpl h2,h1{
-        display: inline-block;
+    .tmpl h1{
+        position:absolute;
+        left:0
     }
     h2{
-        margin-left:99px;
+        position: absolute;
+        top:9px;
+        left:99px;
+        
     }
 </style>
 

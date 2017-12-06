@@ -3,6 +3,7 @@ import Vue from 'vue';
 import Moment from 'moment';
 
 // 引入组件 start
+import Test from './components/test/test.vue';  //测试路由
 import App from './components/App.vue';
 import Home from './components/Home/Home.vue';
 import Vip from './components/Vip/Vip.vue';
@@ -12,22 +13,28 @@ import NewsList from './components/News/NewsList.vue';
 import NewsDetail from './components/News/NewsDetail.vue';
 import PhotoList from './components/Photo/PhotoList.vue';
 import PhotoDetail from './components/Photo/PhotoDetail.vue';
+import GoodsList from './components/Goods/GoodsList.vue';
+import GoodsDetail from './components/Goods/GoodsDetail.vue';
 //vue-router  start
 
 //引入组件并全局注册
 import MyUl from './components/slot/MyUl.vue';
 import MyLi from './components/slot/MyLi.vue';
 import MyNav from './components/slot/Nav.vue';
+import MyComment from './components/slot/comment.vue';
+import MySwipe from './components/slot/swipe.vue';
 Vue.component(MyUl.name,MyUl);
 Vue.component(MyLi.name,MyLi);
-Vue.component(MyNav.name,MyNav)
+Vue.component(MyNav.name,MyNav);
+Vue.component(MyComment.name,MyComment);
+Vue.component(MySwipe.name,MySwipe);
 
 //注册过滤器
 Vue.filter('filterTime',function(value){
     return Moment(value).format('YYYY-MM-DD');
 })
-Vue.filter('filterText',function(value){
-    return value.substr(0,14)+'..';
+Vue.filter('filterText',function(value,limit){
+    return value.substr(0,limit)+'..';
 })
 
 //引入vue-router
@@ -39,6 +46,7 @@ let router = new VueRouter();
 //配置路由规则
 router.addRoutes([
     { path:'/',component:Home },   //重定向
+    { name:'test',path:'/test',component:Test },//测试路由
     { name:'home',path:'/home',component:Home },//主页组件
     { name:'vip',path:'/vip',component:Vip },//会员组件
     { name:'shopcart',path:'/shopcart',component:Shopcart },//购物车组件
@@ -46,7 +54,9 @@ router.addRoutes([
     { name:'newslist',path:'/newslist',component:NewsList },//新闻列表组件
     { name:'newsdetail',path:'/newsdetail',component:NewsDetail },//新闻详情组件
     { name:'photolist',path:'/photolist/:listid',component:PhotoList },//图文列表组件
-    { name:'photodetail',path:'/photodetail/:detailid',component:PhotoDetail }//图文详情列表
+    { name:'photodetail',path:'/photodetail/:detailid',component:PhotoDetail },//图文详情列表
+    { name:'goodsliet',path:'/goodslist',component:GoodsList },//商品列表
+    { name:'goodsdetail',path:'/goodsdetail',component:GoodsDetail}//商品详情列表
 ])
 
 //vue-router end
